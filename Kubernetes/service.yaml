@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: contagem-service
+  labels:
+    version: test
+spec:
+  selector:
+    app: contagem
+  ports:
+  - port: 80
+  type: LoadBalancer

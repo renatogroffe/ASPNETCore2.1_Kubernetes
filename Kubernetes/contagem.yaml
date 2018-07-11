@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: contagem-deployment
+spec:
+  replicas: 5
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: contagem
+    spec:
+      containers:
+      - name: contagem
+        image: renatogroffe/apicontagem:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: contagemregistrykey
